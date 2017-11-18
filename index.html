@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="static/jquery.dataTables.min.css">
+    <script src="static/jquery-1.12.4.js"></script>
+    <script src="static/datatable.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $('#example').DataTable({
+                "ajax": 'http://localhost:5000/get_data'
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+</body>
+</html>
