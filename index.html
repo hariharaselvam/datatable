@@ -15,33 +15,75 @@
             });
 
         });
+        function json_data_submit() {
+            var formData = $("#dataform").serializeArray();
+            var updated_data={};
+            for(i=0;i<formData.length;i++){
+                updated_data[formData[i]['name']]=formData[i]['value']
+            }
+            console.log(updated_data);
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:5000/get_data',
+                data: updated_data,
+                success: function (response) {
+                    console.log(response);
+                },
+                dataType: "json",
+                contentType: "application/json"
+            });
+            return false;
+
+        }
     </script>
 </head>
 <body>
 
-<table id="example" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Extn.</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Extn.</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </tfoot>
-    </table>
+<form name="dataform" id="dataform" onsubmit="json_data_submit()" method="post">
+    <fieldset>
+        <legend>Create New Test Execution Request:</legend>
+        <lable>Requester :</lable>
+        <input type="text" name="requester"><br>
+        <label>Test Environment : </label><input type="number" name="environment" min="1" max="100"><br>
+        <label>Interface : </label>
+        <select name="interface">
+            <option>sample</option>
+        </select><br>
+        <label>Test Template : </label>
+        <select name="template">
+            <option>sample</option>
+        </select><br>
+        <lable>Custom Path :</lable>
+        <input type="text" name="custompath"><br>
+        <input type="submit" value="submit">
+    </fieldset>
 
+</form>
+
+<br>
+
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Extn.</th>
+        <th>Start date</th>
+        <th>Salary</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Extn.</th>
+        <th>Start date</th>
+        <th>Salary</th>
+    </tr>
+    </tfoot>
+</table>
 
 
 </body>
